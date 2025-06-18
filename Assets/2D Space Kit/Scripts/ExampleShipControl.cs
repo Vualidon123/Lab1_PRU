@@ -14,51 +14,43 @@ public class ExampleShipControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	
-		if (Input.GetKeyDown(KeyCode.Escape))
-			Screen.lockCursor = !Screen.lockCursor;	
-	
-	
-	
-		if (Input.GetKey(KeyCode.W)) {
-			GetComponent<Rigidbody2D>().AddForce(transform.up * acceleration_amount * Time.deltaTime);
-		
-		}
-		if (Input.GetKey(KeyCode.S)) {
-			GetComponent<Rigidbody2D>().AddForce((-transform.up) * acceleration_amount * Time.deltaTime);
-			
-		}
-		
-		if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.LeftShift)) {
-			GetComponent<Rigidbody2D>().AddForce((-transform.right) * acceleration_amount * 0.6f  * Time.deltaTime);
-			//print ("strafeing");
-		}
-		if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.LeftShift)) {
-			GetComponent<Rigidbody2D>().AddForce((transform.right) * acceleration_amount * 0.6f  * Time.deltaTime);
-			
-		}
-		
-		if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.LeftShift)) {
-			GetComponent<Rigidbody2D>().AddTorque(-rotation_speed  * Time.deltaTime);
-			
-		}
-		if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.LeftShift)) {
-			GetComponent<Rigidbody2D>().AddTorque(rotation_speed  * Time.deltaTime);
-			
-		}	
-		if (Input.GetKey(KeyCode.C)) {
-			GetComponent<Rigidbody2D>().angularVelocity = Mathf.Lerp(GetComponent<Rigidbody2D>().angularVelocity, 0, rotation_speed * 0.06f * Time.deltaTime);
-			GetComponent<Rigidbody2D>().linearVelocity = Vector2.Lerp(GetComponent<Rigidbody2D>().linearVelocity, Vector2.zero, acceleration_amount * 0.06f * Time.deltaTime);
-		}	
-		
-		
-		if (Input.GetKey(KeyCode.H)) {
-			transform.position = new Vector3(0,0,0);
-		}	
-		
-		
-		
-		
-	}
+
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Screen.lockCursor = !Screen.lockCursor;
+
+        // Move up with Up Arrow
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            GetComponent<Rigidbody2D>().AddForce(transform.up * acceleration_amount * Time.deltaTime);
+        }
+        // Move down with Down Arrow
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            GetComponent<Rigidbody2D>().AddForce((-transform.up) * acceleration_amount * Time.deltaTime);
+        }
+        // Move left with Left Arrow (increased speed)
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            GetComponent<Rigidbody2D>().AddForce((-transform.right) * acceleration_amount * 1.5f * Time.deltaTime);
+        }
+        // Move right with Right Arrow (increased speed)
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            GetComponent<Rigidbody2D>().AddForce(transform.right * acceleration_amount * 1.5f * Time.deltaTime);
+        }
+
+        // Stop movement and rotation with C key
+        if (Input.GetKey(KeyCode.C))
+        {
+            GetComponent<Rigidbody2D>().angularVelocity = Mathf.Lerp(GetComponent<Rigidbody2D>().angularVelocity, 0, rotation_speed * 0.06f * Time.deltaTime);
+            GetComponent<Rigidbody2D>().linearVelocity = Vector2.Lerp(GetComponent<Rigidbody2D>().linearVelocity, Vector2.zero, acceleration_amount * 0.06f * Time.deltaTime);
+        }
+
+        // Reset position to origin with H key
+        if (Input.GetKey(KeyCode.H))
+        {
+            transform.position = new Vector3(0, 0, 0);
+        }
+    }
 }
