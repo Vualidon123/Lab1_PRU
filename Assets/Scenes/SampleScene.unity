@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 82245122}
   m_Layer: 0
   m_Name: Asteroid 1 (1)
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 137749503}
   m_Layer: 0
   m_Name: Asteroid 1
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6831,7 +6831,7 @@ GameObject:
   - component: {fileID: 1399622182}
   m_Layer: 0
   m_Name: Asteroid 1 (2)
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7812,7 +7812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  rotation_speed: 29
+  rotationSpeed: 180
   turret: {fileID: 13777906}
   turret_rotation_speed: 3
 --- !u!50 &2011956602
@@ -8334,7 +8334,7 @@ GameObject:
   - component: {fileID: 2076301596}
   m_Layer: 5
   m_Name: EndingPanel
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

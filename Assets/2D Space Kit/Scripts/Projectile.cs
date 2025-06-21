@@ -17,17 +17,19 @@ public class Projectile : MonoBehaviour {
 	void Update () {
 	
 	}
-	
-	
-	void OnTriggerEnter2D(Collider2D col) {
 
-		//Don't want to collide with the ship that's shooting this thing, nor another projectile.
-		if (col.gameObject != firing_ship && col.gameObject.tag != "Projectile") {
-			Instantiate(hit_effect, transform.position, Quaternion.identity);
-			Destroy(gameObject);
-		}
-	}
-	
-	
-	
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // Optionally check for a tag or component to ensure it's a valid target
+        if (other.CompareTag("Projectile")) // Make sure your target objects have the "Target" tag
+        {
+            Instantiate(hit_effect, transform.position, Quaternion.identity);
+            Destroy(other.gameObject); // This makes the target disappear
+            Destroy(gameObject); // Optionally destroy the projectile as well
+        }
+    }
+
+
+
 }
