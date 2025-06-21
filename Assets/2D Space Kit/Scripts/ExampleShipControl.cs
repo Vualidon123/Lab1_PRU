@@ -1,50 +1,51 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ExampleShipControl : MonoBehaviour {
+public class ExampleShipControl : MonoBehaviour
+{
+    public float moveSpeed = 8f; // Increased speed
+    public float rotationSpeed = 180f; // Degrees per second
+    public GameObject turret;
+    public float turret_rotation_speed = 3f;
 
-	public float acceleration_amount = 1f;
-	public float rotation_speed = 1f;
-	public GameObject turret;
-	public float turret_rotation_speed = 3f;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    private Rigidbody2D rb;
 
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
             Screen.lockCursor = !Screen.lockCursor;
 
-        // Move up with Up Arrow
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            GetComponent<Rigidbody2D>().AddForce(transform.up * acceleration_amount * Time.deltaTime);
-        }
-        // Move down with Down Arrow
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            GetComponent<Rigidbody2D>().AddForce((-transform.up) * acceleration_amount * Time.deltaTime);
-        }
-        // Move left with Left Arrow (increased speed)
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            GetComponent<Rigidbody2D>().AddForce((-transform.right) * acceleration_amount * 1.5f * Time.deltaTime);
-        }
-        // Move right with Right Arrow (increased speed)
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            GetComponent<Rigidbody2D>().AddForce(transform.right * acceleration_amount * 1.5f * Time.deltaTime);
-        }
+        float moveInput = 0f;
+        float rotationInput = 0f;
+
+        // Forward/Backward movement (W/S or Up/Down)
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            moveInput = 1f;
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            moveInput = -1f;
+
+        // Rotation (A/D or Left/Right)
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            rotationInput = 1f;
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            rotationInput = -1f;
+
+        // Apply movement
+        rb.linearVelocity = transform.up * moveInput * moveSpeed;
+
+        // Apply rotation
+        rb.angularVelocity = rotationInput * rotationSpeed;
 
         // Stop movement and rotation with C key
         if (Input.GetKey(KeyCode.C))
         {
-            GetComponent<Rigidbody2D>().angularVelocity = Mathf.Lerp(GetComponent<Rigidbody2D>().angularVelocity, 0, rotation_speed * 0.06f * Time.deltaTime);
-            GetComponent<Rigidbody2D>().linearVelocity = Vector2.Lerp(GetComponent<Rigidbody2D>().linearVelocity, Vector2.zero, acceleration_amount * 0.06f * Time.deltaTime);
+            rb.angularVelocity = Mathf.Lerp(rb.angularVelocity, 0, 0.5f);
+            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, 0.5f);
         }
 
         // Reset position to origin with H key
