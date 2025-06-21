@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public CanvasGroup fadePanel;
     public TMP_Text score;
     public float fadeDuration = 1f;
-
+    public TMP_Text displayScore;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Update()
     {
@@ -44,6 +44,12 @@ public class GameManager : MonoBehaviour
         StartCoroutine(UnFadeBackGround());
 
         score.text = currentScore.ToString();
+    }
+
+    public void UpdateScore()
+    {
+        currentScore ++;
+        displayScore.text ="Score :"+ currentScore.ToString();
     }
 
     IEnumerator UnFadeBackGround()
