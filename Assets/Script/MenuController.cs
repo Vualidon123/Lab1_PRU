@@ -39,18 +39,24 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
-    void OnInstructionsButtonClick()
+    public void OnInstructionsButtonClick()
     {
         PlayButtonSound();
+        Debug.Log("Instructions button clicked!");
 
         if (instructionsPanel != null)
         {
+            Debug.Log("Showing instructions panel");
+
             instructionsPanel.SetActive(true);
 
             AnimatePanel(true);
         }
+        else
+        {
+            Debug.LogError("Instructions Panel is null!");
+        }
     }
-
     void OnCloseButtonClick()
     {
         PlayButtonSound();
@@ -121,6 +127,11 @@ public class MenuController : MonoBehaviour
             {
                 OnCloseButtonClick();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Debug.Log($"Panel active: {instructionsPanel.activeSelf}");
+            Debug.Log($"Panel gameObject active: {instructionsPanel.gameObject.activeInHierarchy}");
         }
     }
 
