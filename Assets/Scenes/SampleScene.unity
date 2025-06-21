@@ -1032,7 +1032,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.929571, y: -2.3995183, z: -8.37}
+  m_LocalPosition: {x: 0.06, y: 0.04, z: -8.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1654,7 +1654,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -1707,7 +1707,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -7811,7 +7811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1b717e3e89ca541a5ccaedc5c46cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration_amount: 38
+  moveSpeed: 8
   rotation_speed: 29
   turret: {fileID: 13777906}
   turret_rotation_speed: 3
